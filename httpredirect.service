@@ -1,0 +1,15 @@
+[Unit]
+Description=HTTP Redirector Service
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/bin
+ExecStart=/root/bin/httpredirect
+Restart=on-failure # or always, on-abort, etc
+PIDFile=/var/run/httpredirect.pid
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target
+
